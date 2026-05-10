@@ -1,0 +1,1 @@
+Background job worker failed due to race condition in distributed queue leading to duplicate execution of payment callback handler.

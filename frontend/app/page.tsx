@@ -5,6 +5,8 @@ import { useState } from "react";
 export default function Home() {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
+  const [analysis, setAnalysis] = useState<any>(null);
+  const [bugReport, setBugReport] = useState("");
   const [message, setMessage] = useState("");
 
   const handleUpload = async () => {
@@ -12,6 +14,7 @@ export default function Home() {
 
     setLoading(true);
     setMessage("");
+    setAnalysis(null);
 
     const formData = new FormData();
     formData.append("file", file);
@@ -23,9 +26,16 @@ export default function Home() {
       });
 
       const data = await res.json();
-      setMessage(`✅ ${data.message}`);
+
+      if (res.ok) {
+        setAnalysis(data.analysis);
+        setBugReport(data.bug_report);
+        setMessage("Analysis complete");
+      } else {
+        setMessage("Upload failed");
+      }
     } catch (err) {
-      setMessage("❌ Upload failed");
+      setMessage("Upload failed");
     }
 
     setLoading(false);
@@ -58,10 +68,76 @@ export default function Home() {
           borderRadius: 6,
         }}
       >
-        {loading ? "Uploading..." : "Upload Log"}
+        {loading ? "Analyzing..." : "Upload Log"}
       </button>
 
       <p style={{ marginTop: 20 }}>{message}</p>
+
+      {/* AI RESULT SECTION */}
+
+      {analysis && (
+        <div
+          style={{
+            marginTop: 30,
+            padding: 20,
+            border: "1px solid #ddd",
+            borderRadius: 10,
+            backgroundColor: "#f9f9f9",
+          }}
+        >
+          <h2>AI Analysis Result</h2>
+
+          <p><b>Root Cause:</b> {analysis.root_cause}</p>
+          <p><b>Severity:</b> {analysis.severity}</p>
+          <p><b>Module:</b> {analysis.module}</p>
+          <p><b>Summary:</b> {analysis.summary}</p>
+          <p><b>Suggested Fix:</b> {analysis.suggested_fix}</p>
+        </div>
+      )}
+
+      {/* BUG REPORT SECTION */}
+      
+      {bugReport && (
+        <div
+          style={{
+            marginTop: 30,
+            padding: 20,
+            border: "1px solid #ccc",
+            borderRadius: 10,
+            backgroundColor: "#ffffff",
+          }}
+        >
+          <h2>Generated Bug Report</h2>
+
+          <textarea
+            value={bugReport}
+            readOnly
+            rows={18}
+            style={{
+              width: "100%",
+              padding: 10,
+              borderRadius: 8,
+            }}
+          />
+
+          <br /><br />
+
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(bugReport);
+              alert("Bug report copied!");
+            }}
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "black",
+              color: "white",
+              borderRadius: 6,
+            }}
+          >
+            Copy Bug Report
+          </button>
+        </div>
+      )}
     </main>
   );
 }

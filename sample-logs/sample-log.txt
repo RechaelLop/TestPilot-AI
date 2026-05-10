@@ -1,0 +1,9 @@
+[FAIL] Checkout API Test
+
+Expected status: 200
+Received status: 500
+
+payment-service timeout after 30000ms
+
+Stack Trace:
+TimeoutError: request exceeded timeout limit
