@@ -1,0 +1,1 @@
+Payment gateway response mismatch resulted in transaction marked as successful but not persisted in database ledger.

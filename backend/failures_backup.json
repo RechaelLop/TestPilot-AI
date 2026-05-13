@@ -1,0 +1,134 @@
+[
+  {
+    "filename": "realtime-log-1778629345357.txt",
+    "log": "Microservice dependency failure in order service due to circuit breaker not triggering fallback correctly.",
+    "analysis": {
+      "root_cause": "circuit breaker not triggering fallback correctly",
+      "severity": "medium",
+      "module": "Order",
+      "summary": "Microservice dependency failure",
+      "suggested_fix": "Implement correct fallback logic for circuit breaker",
+      "confidence_score": "95%",
+      "impact_assessment": "stability"
+    },
+    "created_at": "2026-05-12T23:43:24.515623",
+    "_id": "9"
+  },
+  {
+    "filename": "realtime-log-1778628281037.txt",
+    "log": "Refund processing service failed due to deadlock in SQL transaction while updating wallet balance.",
+    "analysis": {
+      "root_cause": "deadlock in SQL transaction",
+      "severity": "critical",
+      "module": "Refund Processing Service",
+      "summary": "Refund processing service failure",
+      "suggested_fix": "Review and optimize database transactions",
+      "confidence_score": "79%",
+      "impact_assessment": "stability"
+    },
+    "created_at": "2026-05-12T23:26:10.468752",
+    "_id": "8"
+  },
+  {
+    "filename": "sample-unknown-log3.txt",
+    "log": "Payment gateway response mismatch resulted in transaction marked as successful but not persisted in database ledger.",
+    "analysis": {
+      "root_cause": "Database connection issue",
+      "severity": "high",
+      "module": "Database",
+      "summary": "DB connection or query failure.",
+      "suggested_fix": "Verify DB credentials and network.",
+      "confidence_score": "92%",
+      "impact_assessment": "stability"
+    },
+    "created_at": "2026-05-12T23:23:57.409826",
+    "_id": "7"
+  },
+  {
+    "filename": "realtime-log.txt",
+    "log": "CI/CD pipeline failed at deployment stage due to missing environment variables in production secrets manager.",
+    "analysis": {
+      "root_cause": "missing environment variables in production secrets manager",
+      "severity": "medium",
+      "module": "Ci Cd",
+      "summary": "",
+      "suggested_fix": "Check and update missing environment variables",
+      "confidence_score": "75%",
+      "impact_assessment": "stability"
+    },
+    "created_at": "2026-05-12T22:50:00.114958",
+    "_id": "6"
+  },
+  {
+    "filename": "sample-unknown-log2.txt",
+    "log": "Multiple workers processed the same job ID due to missing distributed lock in queue handler, resulting in duplicate email notifications sent to users.",
+    "analysis": {
+      "root_cause": "missing distributed lock in queue handler",
+      "severity": "medium",
+      "module": "Queue Handler",
+      "summary": "Multiple workers processed same job ID, resulting in duplicate email notifications.",
+      "suggested_fix": "Implement a distributed lock to prevent concurrent processing.",
+      "confidence_score": "91%",
+      "impact_assessment": "stability"
+    },
+    "created_at": "2026-05-12T22:45:55.609657",
+    "_id": "5"
+  },
+  {
+    "filename": "sample-unknown-log.txt",
+    "log": "Background job worker failed due to race condition in distributed queue leading to duplicate execution of payment callback handler.",
+    "analysis": {
+      "root_cause": "race condition in distributed queue",
+      "severity": "medium",
+      "module": "Payment Callback Handler",
+      "summary": "",
+      "suggested_fix": "Implement locking mechanism to prevent duplicate executions",
+      "confidence_score": "92%",
+      "impact_assessment": "stability"
+    },
+    "created_at": "2026-05-12T22:25:25.868593",
+    "_id": "4"
+  },
+  {
+    "_id": "1",
+    "filename": "sample_payment_error.log",
+    "analysis": {
+      "root_cause": "Payment gateway timeout",
+      "severity": "critical",
+      "module": "Payment Service",
+      "summary": "API call to payment provider exceeded 30s limit",
+      "suggested_fix": "Implement retry logic with exponential backoff",
+      "confidence_score": "92%",
+      "impact_assessment": "financial"
+    },
+    "created_at": "2024-01-15T10:30:00Z"
+  },
+  {
+    "_id": "2",
+    "filename": "auth_failure.log",
+    "analysis": {
+      "root_cause": "JWT token validation failed",
+      "severity": "high",
+      "module": "Auth Service",
+      "summary": "Expired or malformed authentication token",
+      "suggested_fix": "Add token refresh endpoint",
+      "confidence_score": "88%",
+      "impact_assessment": "security"
+    },
+    "created_at": "2024-01-15T09:15:00Z"
+  },
+  {
+    "_id": "3",
+    "filename": "database_connection.log",
+    "analysis": {
+      "root_cause": "Connection pool exhausted",
+      "severity": "high",
+      "module": "Database Layer",
+      "summary": "Too many concurrent connections",
+      "suggested_fix": "Increase pool size to 50",
+      "confidence_score": "85%",
+      "impact_assessment": "stability"
+    },
+    "created_at": "2024-01-14T22:00:00Z"
+  }
+]

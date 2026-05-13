@@ -1,0 +1,1 @@
+Multiple workers processed the same job ID due to missing distributed lock in queue handler, resulting in duplicate email notifications sent to users.
