@@ -52,6 +52,8 @@ export default function DashboardPage() {
   ]);
   const [categoryData, setCategoryData] = useState<any[]>([]);
 
+  const API_URL = "https://testpilot-ai-backend.onrender.com";
+
   useEffect(() => {
     fetchFailures();
     
@@ -70,7 +72,7 @@ export default function DashboardPage() {
 
   const fetchFailures = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/failures");
+      const res = await fetch(`${API_URL}/failures`);
       const data = await res.json();
       setFailures(data);
     } catch (err) {
@@ -241,7 +243,7 @@ export default function DashboardPage() {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/upload", {
+      const res = await fetch(`${API_URL}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -281,7 +283,7 @@ export default function DashboardPage() {
     formData.append("file", logFile);
     
     try {
-      const res = await fetch("http://127.0.0.1:8000/upload", {
+      const res = await fetch(`${API_URL}/upload`, {
         method: "POST",
         body: formData,
       });
